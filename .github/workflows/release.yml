@@ -62,7 +62,7 @@ jobs:
           - name: Create AppImage file
             run: |
                  cd build
-                 ./linuxdeploy-x86_64.AppImage --appdir AppDir --executable sdl2-jstest
+                 ./linuxdeploy-x86_64.AppImage --appdir AppDir --executable sdl2-jstest --create-desktop-file
                  ./appimagetool-x86_64.AppImage AppDir/
         #   - name: Upload binaries to release
         #     uses: AButler/upload-release-assets@v3.0
