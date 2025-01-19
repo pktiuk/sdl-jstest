@@ -41,10 +41,8 @@ jobs:
               mkdir build && cd ./build
               wget https://github.com/linuxdeploy/linuxdeploy/releases/download/continuous/linuxdeploy-x86_64.AppImage
               wget https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-x86_64.AppImage
-              wget https://github.com/linuxdeploy/linuxdeploy-plugin-qt/releases/download/continuous/linuxdeploy-plugin-qt-x86_64.AppImage
               chmod +x linuxdeploy-x86_64.AppImage
               chmod +x appimagetool-x86_64.AppImage
-              chmod +x linuxdeploy-plugin-qt-x86_64.AppImage
           - name: Configure
             shell: bash
             run: |
@@ -64,7 +62,7 @@ jobs:
           - name: Create AppImage file
             run: |
                  cd build
-                 ./linuxdeploy-x86_64.AppImage --appdir AppDir --plugin qt
+                 ./linuxdeploy-x86_64.AppImage --appdir AppDir --executable sdl2-jstest
                  ./appimagetool-x86_64.AppImage AppDir/
         #   - name: Upload binaries to release
         #     uses: AButler/upload-release-assets@v3.0
