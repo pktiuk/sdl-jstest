@@ -33,6 +33,9 @@ jobs:
         #       sudo cmake --install .
         #       sudo cp /usr/local/lib/libSDL2-2.0.so.0 /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0
           - uses: actions/checkout@v4
+            with:
+                fetch-depth: 0
+                submodules: 'true'
           - name: Prepare files needed to create AppImage
             run: |
               mkdir build && cd ./build
