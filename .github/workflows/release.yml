@@ -48,6 +48,7 @@ jobs:
               cd build
               cmake .. \
                 -DCMAKE_BUILD_TYPE=Release \
+                -DBUILD_SDL_JSTEST=OFF \
                 -DCMAKE_INSTALL_PREFIX=/usr \
                 -DWARNINGS=ON \
                 -DWERROR=ON
