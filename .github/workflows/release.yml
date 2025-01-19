@@ -1,6 +1,7 @@
 name: Release
 on:
-  push:
+    release:
+        types: [published]
 
 
 jobs:
@@ -21,17 +22,17 @@ jobs:
               ninja --version
               cmake --version
               gcc --version
-          #Replace original library with the newer one
-        #   - name: Build and install newer SDL2
-        #     run: |
-        #       git clone https://github.com/libsdl-org/SDL.git -b release-2.30.6
-        #       cd SDL
-        #       mkdir build
-        #       cd build
-        #       cmake ..
-        #       cmake --build .
-        #       sudo cmake --install .
-        #       sudo cp /usr/local/lib/libSDL2-2.0.so.0 /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0
+        #  Replace original library with the newer one
+          - name: Build and install newer SDL2
+            run: |
+              git clone https://github.com/libsdl-org/SDL.git -b release-2.30.6
+              cd SDL
+              mkdir build
+              cd build
+              cmake ..
+              cmake --build .
+              sudo cmake --install .
+              sudo cp /usr/local/lib/libSDL2-2.0.so.0 /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0
           - uses: actions/checkout@v4
             with:
                 fetch-depth: 0
@@ -64,8 +65,8 @@ jobs:
                  cd build
                  ./linuxdeploy-x86_64.AppImage --appdir AppDir --executable sdl2-jstest --create-desktop-file
                  ./appimagetool-x86_64.AppImage AppDir/
-        #   - name: Upload binaries to release
-        #     uses: AButler/upload-release-assets@v3.0
-        #     with:
-        #         files: ./build/*.AppImage
-        #         repo-token: ${{ github.token }}
+          - name: Upload binaries to release
+            uses: AButler/upload-release-assets@v3.0
+            with:
+                files: ./build/*.AppImage
+                repo-token: ${{ github.token }}
